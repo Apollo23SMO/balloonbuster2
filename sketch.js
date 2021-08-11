@@ -1,5 +1,6 @@
-var bow , arrow,  scene;
+var bow , arrow,  scene, arrowGroup;
 var bowImage, arrowImage, green_balloonImage, red_balloonImage, pink_balloonImage ,blue_balloonImage, backgroundImage;
+var redGroup, blueGroup, greenGroup, pinkGroup
 
 var score=0;
 
@@ -30,7 +31,13 @@ function setup() {
   bow.addImage(bowImage); 
   bow.scale = 1;
   
-   score = 0    
+  arrowGroup = new Group();
+  redGroup = new Group();
+  blueGroup = new Group();
+  greenGroup = new Group();
+  pinkGroup = new Group();
+  
+  score = 0    
 }
 
 function draw() {
@@ -43,23 +50,23 @@ function draw() {
     }
 
     //making arrows pop balloons
-    if (arrow.isTouching(redBalloon)){
-      redBalloon.destroy
+    if (arrowGroup.isTouching(redGroup)){
+      redGroup.destroyEach();
       score=score+1
     }
 
-    if (arrow.isTouching(blueBalloon)){
-      blueBalloon.destroy
+    if (arrowGroup.isTouching(blueGroup)){
+      blueGroup.destroyEach();
       score=score+1
     }
 
-    if (arrow.isTouching(greenBalloon)){
-      greenBalloon.destroy
+    if (arrowGroup.isTouching(greenGroup)){
+      greenGroup.destroyEach();
       score=score+1
     }
 
-    if (arrow.isTouching(pinkBalloon)){
-      pinkBalloon.destroy
+    if (arrowGroup.isTouching(pinkGroup)){
+      pinkGroup.destroyEach();
       score=score+1
     }
   
@@ -101,6 +108,8 @@ function draw() {
   arrow.velocityX = -4;
   arrow.lifetime = 100;
   arrow.scale = 0.3;
+  arrowGroup.add(arrow);
+
 }
 
 function redBalloon() {
@@ -109,6 +118,7 @@ function redBalloon() {
   red.velocityX = 3;
   red.lifetime = 150;
   red.scale = 0.1;
+  redGroup.add(red);
 }
 
 function blueBalloon() {
@@ -117,6 +127,7 @@ function blueBalloon() {
   blue.velocityX = 3;
   blue.lifetime = 150;
   blue.scale = 0.1;
+  blueGroup.add(blue);
 }
 
 function greenBalloon() {
@@ -125,6 +136,7 @@ function greenBalloon() {
   green.velocityX = 3;
   green.lifetime = 150;
   green.scale = 0.1;
+  greenGroup.add(green);
 }
 
 function pinkBalloon() {
@@ -133,4 +145,5 @@ function pinkBalloon() {
   pink.velocityX = 3;
   pink.lifetime = 150;
   pink.scale = 1
+  pinkGroup.add(pink);
 }
